@@ -3,6 +3,6 @@ import register from './register';
 
 const parentRoutes = Router();
 
-parentRoutes.get('/register', register);
+parentRoutes.post('/register', register);
 
 export default parentRoutes;
