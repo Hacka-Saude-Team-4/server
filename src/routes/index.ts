@@ -1,9 +1,8 @@
-import { Request, Response, Router } from 'express';
+import { Router } from 'express';
+import childRoutes from './child';
 
 const routes = Router();
 
-routes.get('/', (req: Request, res: Response) => {
-	res.send('router working');
-});
+routes.use('/child', childRoutes);
 
 export default routes;
