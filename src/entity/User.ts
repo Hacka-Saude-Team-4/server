@@ -1,3 +1,4 @@
+import { lookupService } from 'dns';
 import {
 	Entity,
 	PrimaryGeneratedColumn,
@@ -5,6 +6,8 @@ import {
 	CreateDateColumn,
 	UpdateDateColumn,
 	BaseEntity,
+	ManyToOne,
+	OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -47,4 +50,10 @@ export class User extends BaseEntity {
 
 	@UpdateDateColumn({ type: 'timestamp' })
 	updatedAt: Date;
+
+	@ManyToOne((type) => User, (user) => user.children)
+	parent: User;
+
+	@OneToMany((type) => User, (user) => user.parent)
+	children: User[];
 }
