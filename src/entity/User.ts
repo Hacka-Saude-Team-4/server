@@ -25,13 +25,22 @@ export class User extends BaseEntity {
 	name: string;
 
 	@Column({ nullable: true })
-	birthdate: number;
+	birthdate: Date;
 
 	@Column({ nullable: true })
+	gender: string;
+
+	@Column({ nullable: true })
+	relationship: string;
+
+	@Column('float', { nullable: true })
 	height: number;
 
-	@Column({ nullable: true })
+	@Column('float', { nullable: true })
 	weight: number;
+
+	@Column({ nullable: true })
+	diseases: string;
 
 	@CreateDateColumn({ type: 'timestamp' })
 	createdAt: Date;
