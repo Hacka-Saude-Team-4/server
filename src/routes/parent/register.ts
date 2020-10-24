@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import { hash } from 'bcrypt';
 import { User } from '../../entity/User';
 import { getRepository } from 'typeorm';
+import { createAccessToken } from '../../services/createAccessToken';
+import { createRefreshToken } from '../../services/createRefreshToken';
 
 interface ParentCredentials {
 	email: string;
@@ -33,7 +35,12 @@ export default async (req: Request, res: Response) => {
 		// Save parent to DB
 		const parentsRepo = getRepository(User);
 		await parentsRepo.save(parent);
-		res.status(200).json({ msg: 'Parent added successfully.', parent });
+		res.status(200).json({
+			msg: 'Parent added successfully.',
+			parent,
+			accessToken: createAccessToken(parent),
+			refreshToken: createRefreshToken(parent),
+		});
 	} catch (err) {
 		console.log('Error at user register: ', err);
 		return res.status(500).json({ msg: 'Error at user register', err });
