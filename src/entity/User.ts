@@ -1,16 +1,41 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+	Entity,
+	PrimaryGeneratedColumn,
+	Column,
+	CreateDateColumn,
+	UpdateDateColumn,
+	BaseEntity,
+} from 'typeorm';
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
 	@Column()
-	firstName: string;
+	email: string;
 
 	@Column()
-	lastName: string;
+	password: string;
 
 	@Column()
-	age: number;
+	userType: string;
+
+	@Column({ nullable: true })
+	name: string;
+
+	@Column({ nullable: true })
+	birthdate: number;
+
+	@Column({ nullable: true })
+	height: number;
+
+	@Column({ nullable: true })
+	weight: number;
+
+	@CreateDateColumn({ type: 'timestamp' })
+	createdAt: Date;
+
+	@UpdateDateColumn({ type: 'timestamp' })
+	updatedAt: Date;
 }

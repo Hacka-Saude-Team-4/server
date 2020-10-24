@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { hash } from 'bcrypt';
-import { Parent } from '../../entity/Parent';
+import { User } from '../../entity/User';
 import { getRepository } from 'typeorm';
 
 interface ParentCredentials {
@@ -15,7 +15,7 @@ export default async (req: Request, res: Response) => {
 		const hashedPassword = await hash(password, 12);
 
 		// Check if user already exists
-		let parent = await Parent.findOne({ where: { email } });
+		let parent = await User.findOne({ where: { email } });
 		if (parent) {
 			// If parent already exists
 			return res
@@ -25,12 +25,13 @@ export default async (req: Request, res: Response) => {
 
 		// If user does not exist yet
 		// create a new instance of Parent
-		parent = new Parent();
+		parent = new User();
 		parent.email = email;
 		parent.password = hashedPassword;
+		parent.userType = 'parent';
 
 		// Save parent to DB
-		const parentsRepo = getRepository(Parent);
+		const parentsRepo = getRepository(User);
 		await parentsRepo.save(parent);
 		res.status(200).json({ msg: 'Parent added successfully.', parent });
 	} catch (err) {
