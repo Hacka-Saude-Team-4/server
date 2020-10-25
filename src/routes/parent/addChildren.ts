@@ -8,6 +8,8 @@ interface ParentAditionalInfo {
 	gender: string;
 	relationship: string;
 	height: number;
+	heightCM: number;
+	heightM: number;
 	weight: number;
 	diseases: string;
 }
@@ -21,6 +23,8 @@ export default async (req: Request, res: Response) => {
 			gender,
 			relationship,
 			height,
+			heightCM,
+			heightM,
 			weight,
 			diseases,
 		}: ParentAditionalInfo = req.body;
@@ -34,6 +38,8 @@ export default async (req: Request, res: Response) => {
 		child.gender = gender;
 		child.relationship = relationship;
 		child.height = height;
+		child.heightCM = heightCM;
+		child.heightM = heightM;
 		child.weight = weight;
 		child.diseases = diseases;
 

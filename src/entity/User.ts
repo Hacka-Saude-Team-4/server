@@ -41,6 +41,12 @@ export class User extends BaseEntity {
 	@Column('float', { nullable: true })
 	height: number;
 
+	@Column({ nullable: true })
+	heightM: number;
+
+	@Column({ nullable: true })
+	heightCM: number;
+
 	@Column('float', { nullable: true })
 	weight: number;
 
