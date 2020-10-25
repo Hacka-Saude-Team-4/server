@@ -26,6 +26,7 @@ export default async (req: Request, res: Response) => {
 				msg: 'User logged in successfully.',
 				accessToken: createAccessToken(user),
 				refreshToken: createRefreshToken(user),
+				child: user,
 			});
 		}
 	} catch (err) {
