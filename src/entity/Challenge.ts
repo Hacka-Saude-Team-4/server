@@ -19,19 +19,16 @@ export class Challenge extends BaseEntity {
 	title: string;
 
 	@Column({ nullable: true })
-	description: string;
-
-	@Column({ nullable: true })
-	cost: number;
-
-	@Column({ nullable: true })
-	level: number;
+	coins: number;
 
 	@Column({ nullable: true })
 	assignedBy: number;
 
 	@Column({ nullable: true })
 	assignedTo: number;
+
+	@Column({ nullable: true })
+	assignedToName: string;
 
 	@CreateDateColumn({ type: 'timestamp' })
 	createdAt: Date;

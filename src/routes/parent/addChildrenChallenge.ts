@@ -5,10 +5,9 @@ import { Challenge } from '../../entity/Challenge';
 
 interface ChallengeInfo {
 	assignedTo: number;
+	assignedToName: string;
 	title: string;
-	description: string;
-	cost: number;
-	level: number;
+	coins: number;
 }
 
 export default async (req: Request, res: Response) => {
@@ -20,19 +19,17 @@ export default async (req: Request, res: Response) => {
 		const {
 			assignedTo,
 			title,
-			description,
-			cost,
-			level,
+			coins,
+			assignedToName,
 		}: ChallengeInfo = req.body;
 
 		// Create the challenge
 		let challenge = new Challenge();
 		challenge.title = title;
-		challenge.description = description;
-		challenge.cost = cost;
-		challenge.level = level;
+		challenge.coins = coins;
 		challenge.assignedBy = parseInt(userId);
 		challenge.assignedTo = assignedTo;
+		challenge.assignedToName = assignedToName;
 
 		// Save challenge
 		const challengesRepo = getRepository(Challenge);
