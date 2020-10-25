@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import validateAuth from '../../middleware/validateAuth';
 import addChildren from './addChildren';
+import addChildrenChallenge from './addChildrenChallenge';
 import listChildren from './listChildren';
 import register from './register';
 import updateInfo from './updateInfo';
@@ -11,5 +12,6 @@ parentRoutes.post('/register', register);
 parentRoutes.post('/update', validateAuth, updateInfo);
 parentRoutes.post('/child', validateAuth, addChildren);
 parentRoutes.get('/children', validateAuth, listChildren);
+parentRoutes.post('/challenge', validateAuth, addChildrenChallenge);
 
 export default parentRoutes;

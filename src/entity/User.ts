@@ -10,6 +10,7 @@ import {
 	OneToMany,
 	JoinTable,
 } from 'typeorm';
+import { Challenge } from './Challenge';
 
 @Entity()
 export class User extends BaseEntity {
@@ -57,4 +58,7 @@ export class User extends BaseEntity {
 
 	@OneToMany(() => User, (user) => user.parent)
 	children: User[];
+
+	@OneToMany(() => Challenge, (challenge) => challenge.user)
+	challenges: Challenge[];
 }
