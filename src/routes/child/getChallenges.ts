@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
 import { User } from '../../entity/User';
-import { getRepository } from 'typeorm';
-import { Challenge } from '../../entity/Challenge';
 
 export default async (req: Request, res: Response) => {
 	try {
