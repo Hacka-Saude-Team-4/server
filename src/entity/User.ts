@@ -8,6 +8,7 @@ import {
 	BaseEntity,
 	ManyToOne,
 	OneToMany,
+	JoinTable,
 } from 'typeorm';
 
 @Entity()
@@ -15,10 +16,10 @@ export class User extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column()
+	@Column({ nullable: true })
 	email: string;
 
-	@Column()
+	@Column({ nullable: true })
 	password: string;
 
 	@Column()
@@ -51,9 +52,9 @@ export class User extends BaseEntity {
 	@UpdateDateColumn({ type: 'timestamp' })
 	updatedAt: Date;
 
-	@ManyToOne((type) => User, (user) => user.children)
+	@ManyToOne(() => User, (user) => user.children)
 	parent: User;
 
-	@OneToMany((type) => User, (user) => user.parent)
+	@OneToMany(() => User, (user) => user.parent)
 	children: User[];
 }
