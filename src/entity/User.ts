@@ -11,6 +11,7 @@ import {
 	JoinTable,
 } from 'typeorm';
 import { Challenge } from './Challenge';
+import { Reward } from './Reward';
 
 @Entity()
 export class User extends BaseEntity {
@@ -53,6 +54,18 @@ export class User extends BaseEntity {
 	@Column({ nullable: true })
 	diseases: string;
 
+	@Column({ nullable: true, default: 0 })
+	foodscore: number;
+
+	@Column({ nullable: true, default: 0 })
+	xp: number;
+
+	@Column({ nullable: true, default: 0 })
+	lvl: number;
+
+	@Column({ nullable: true, default: 0 })
+	coins: number;
+
 	@CreateDateColumn({ type: 'timestamp' })
 	createdAt: Date;
 
@@ -67,4 +80,7 @@ export class User extends BaseEntity {
 
 	@OneToMany(() => Challenge, (challenge) => challenge.user)
 	challenges: Challenge[];
+
+	@OneToMany(() => Reward, (reward) => reward.user)
+	rewards: Reward[];
 }
